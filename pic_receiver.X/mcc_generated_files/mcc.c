@@ -53,6 +53,10 @@ void SYSTEM_Initialize(void)
     PIN_MANAGER_Initialize();
     OSCILLATOR_Initialize();
     UART1_Initialize();
+    PWM2_16BIT_Initialize();
+    PWM3_16BIT_Initialize();
+    PWM4_16BIT_Initialize();
+    PWM1_16BIT_Initialize();
 }
 
 void OSCILLATOR_Initialize(void)

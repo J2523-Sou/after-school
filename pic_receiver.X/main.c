@@ -11,7 +11,6 @@
 volatile uint8_t rx_buffer[RX_BUFFER_SIZE];     //8ビットデータ配列（受信したやつ）
 volatile uint8_t rx_count = 0;                  //受信中のビット番号
 volatile bool rx_complete = false;              //受信完了フラグ
-uint8_t before_a;
 
 
 //メイン関数
@@ -55,26 +54,24 @@ void main(void)
         if (rx_complete == true)
         {          
             
-            if (rx_buffer[1] == 1) {
-                RA0 = 1;
-            } else {
-                RA0 = 0;
-            }
-//            
-            if (rx_buffer[2] == 1) {
-                RA1 = 1;
-            } else {
-                RA1 = 0;
-            }
-//            
-//            if (rx_buffer[2] == 1) {
-//                RA2 = 1;
-//            } else {
-//                RA2 = 0;
-//            }
+            RA0 = 1;    //受信インジケータ
             
-            RA3 = 1;
+            //出力
+            PWM1_16BIT_SetSlice1Output1DutyCycleRegister(rx_buffer[1]);
+            PWM1_16BIT_SetSlice1Output2DutyCycleRegister(rx_buffer[2]);
+            PWM2_16BIT_SetSlice1Output1DutyCycleRegister(rx_buffer[3]);
+            PWM2_16BIT_SetSlice1Output2DutyCycleRegister(rx_buffer[4]);
+            PWM3_16BIT_SetSlice1Output1DutyCycleRegister(rx_buffer[5]);
+            PWM3_16BIT_SetSlice1Output2DutyCycleRegister(rx_buffer[6]);
+            PWM4_16BIT_SetSlice1Output1DutyCycleRegister(rx_buffer[7]);
+            PWM4_16BIT_SetSlice1Output2DutyCycleRegister(rx_buffer[8]);
             
+            PWM1_16BIT_LoadBufferRegisters();
+            PWM2_16BIT_LoadBufferRegisters();
+            PWM3_16BIT_LoadBufferRegisters();
+            PWM4_16BIT_LoadBufferRegisters();
+
+                        
             rx_complete = false;
             
         }

@@ -11,6 +11,10 @@
         <itemPath>mcc_generated_files/mcc.h</itemPath>
         <itemPath>mcc_generated_files/device_config.h</itemPath>
         <itemPath>mcc_generated_files/uart1.h</itemPath>
+        <itemPath>mcc_generated_files/pwm1_16bit.h</itemPath>
+        <itemPath>mcc_generated_files/pwm2_16bit.h</itemPath>
+        <itemPath>mcc_generated_files/pwm4_16bit.h</itemPath>
+        <itemPath>mcc_generated_files/pwm3_16bit.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -33,6 +37,10 @@
         <itemPath>mcc_generated_files/mcc.c</itemPath>
         <itemPath>mcc_generated_files/device_config.c</itemPath>
         <itemPath>mcc_generated_files/uart1.c</itemPath>
+        <itemPath>mcc_generated_files/pwm1_16bit.c</itemPath>
+        <itemPath>mcc_generated_files/pwm2_16bit.c</itemPath>
+        <itemPath>mcc_generated_files/pwm4_16bit.c</itemPath>
+        <itemPath>mcc_generated_files/pwm3_16bit.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
     </logicalFolder>
@@ -45,7 +53,7 @@
         <targetDevice>PIC18F26Q84</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>pk4hybrid</platformTool>
+        <platformTool>Simulator</platformTool>
         <languageToolchain>XC8</languageToolchain>
         <languageToolchainVersion>3.10</languageToolchainVersion>
         <platform>4</platform>

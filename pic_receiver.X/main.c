@@ -57,14 +57,14 @@ void main(void)
             RA0 = 1;    //受信インジケータ
             
             //出力
-            PWM1_16BIT_SetSlice1Output1DutyCycleRegister(rx_buffer[1]);
-            PWM1_16BIT_SetSlice1Output2DutyCycleRegister(rx_buffer[2]);
-            PWM2_16BIT_SetSlice1Output1DutyCycleRegister(rx_buffer[3]);
-            PWM2_16BIT_SetSlice1Output2DutyCycleRegister(rx_buffer[4]);
-            PWM3_16BIT_SetSlice1Output1DutyCycleRegister(rx_buffer[5]);
-            PWM3_16BIT_SetSlice1Output2DutyCycleRegister(rx_buffer[6]);
-            PWM4_16BIT_SetSlice1Output1DutyCycleRegister(rx_buffer[7]);
-            PWM4_16BIT_SetSlice1Output2DutyCycleRegister(rx_buffer[8]);
+            PWM1_16BIT_SetSlice1Output1DutyCycleRegister((uint16_t)(rx_buffer[1]));
+            PWM1_16BIT_SetSlice1Output2DutyCycleRegister((uint16_t)(rx_buffer[2]));
+            PWM2_16BIT_SetSlice1Output1DutyCycleRegister((uint16_t)(rx_buffer[3]));
+            PWM2_16BIT_SetSlice1Output2DutyCycleRegister((uint16_t)(rx_buffer[4]));
+            PWM3_16BIT_SetSlice1Output1DutyCycleRegister((uint16_t)(rx_buffer[5]));
+            PWM3_16BIT_SetSlice1Output2DutyCycleRegister((uint16_t)(rx_buffer[6]));
+            PWM4_16BIT_SetSlice1Output1DutyCycleRegister((uint16_t)(rx_buffer[7]));
+            PWM4_16BIT_SetSlice1Output2DutyCycleRegister((uint16_t)(rx_buffer[8]));
             
             PWM1_16BIT_LoadBufferRegisters();
             PWM2_16BIT_LoadBufferRegisters();

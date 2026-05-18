@@ -66,14 +66,14 @@ void PIN_MANAGER_Initialize(void)
     */
     TRISE = 0x08;
     TRISA = 0xF0;
-    TRISB = 0xFF;
-    TRISC = 0xFB;
+    TRISB = 0x03;
+    TRISC = 0xCB;
 
     /**
     ANSELx registers
     */
-    ANSELC = 0xFD;
-    ANSELB = 0xFF;
+    ANSELC = 0xED;
+    ANSELB = 0x03;
     ANSELA = 0xF0;
 
     /**
@@ -113,7 +113,15 @@ void PIN_MANAGER_Initialize(void)
    
     
 	
+    RB6PPS = 0x19;   //RB6->PWM1_16BIT:PWM12;    
+    RB7PPS = 0x18;   //RB7->PWM1_16BIT:PWM11;    
+    RB2PPS = 0x1D;   //RB2->PWM3_16BIT:PWM32;    
+    RB5PPS = 0x1A;   //RB5->PWM2_16BIT:PWM21;    
+    RC4PPS = 0x1F;   //RC4->PWM4_16BIT:PWM42;    
+    RB3PPS = 0x1C;   //RB3->PWM3_16BIT:PWM31;    
+    RB4PPS = 0x1B;   //RB4->PWM2_16BIT:PWM22;    
     RC2PPS = 0x20;   //RC2->UART1:TX1;    
+    RC5PPS = 0x1E;   //RC5->PWM4_16BIT:PWM41;    
     U1RXPPS = 0x11;   //RC1->UART1:RX1;    
 }
   

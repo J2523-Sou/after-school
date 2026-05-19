@@ -16,11 +16,9 @@ def stick(axis):
 #variable
 DEAD = 0.2
 
-#古川機
-SERVER_IP = "172.21.6.110"
+#Raspberry Pi IP
+SERVER_IP = "172.21.6.110"  #MATSUE接続時
 
-#↓蝦名機
-#SERVER_IP = "192.168.11.4"
 PORT = 5001
 axis = [0, 0, 0, 0, 0, 0]
 
@@ -62,11 +60,6 @@ while True:
     axis[0], axis[1] = deadzone(axis[0], axis[1], DEAD)
     axis[2], axis[3] = deadzone(axis[2], axis[3], DEAD)
     
-    data4 = stick(axis[0])
-    data5 = stick(axis[1])
-    data6 = stick(axis[2])
-    data7 = stick(axis[3])
-    
     #Button
     #data1
     if joy.get_button(0):  data1 |= 0b00000001 #Cross
@@ -93,6 +86,11 @@ while True:
     if axis[4] > -0.5:     data3 |= 0b00000010 #L2
     if axis[5] > -0.5:     data3 |= 0b00000100 #R2
     data3 &= 0xFF 
+
+    data4 = stick(axis[0])
+    data5 = stick(axis[1])
+    data6 = stick(axis[2])
+    data7 = stick(axis[3])
     
     
     print("Data1:", data1," Data2:", data2, " Data3:", data3, " Data4:", data4, " Data5:", data5, " Data6:", data6, " Data7:", data7)
@@ -103,5 +101,3 @@ while True:
     time.sleep(0.02)
     
 s.close()
-
-ｌｌ

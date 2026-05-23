@@ -1,5 +1,7 @@
 import time
 import math
+import os
+import sys
 import socket #Wifi library
 import pygame #Dualsense input library
 
@@ -17,27 +19,41 @@ def stick(axis):
 DEAD = 0.2
 
 #Raspberry Pi IP
-SERVER_IP = "172.21.6.110"  #MATSUE接続時
+SERVER_IP = os.environ.get("ROBOT_SERVER_IP", "172.21.6.110")  # MATSUE接続時
 
-PORT = 5001
+PORT = int(os.environ.get("ROBOT_SERVER_PORT", "5001"))
 axis = [0, 0, 0, 0, 0, 0]
 
+
+def connect_socket(host, port, retries=5, interval=1.0):
+    for attempt in range(1, retries + 1):
+        try:
+            sock = socket.create_connection((host, port), timeout=3.0)
+            print("Raspi Connected!!")
+            sock.sendall(b"Hello Raspi!\n")
+            return sock
+        except OSError as exc:
+            if attempt == retries:
+                print(f"Could not connect to {host}:{port}: {exc}")
+                return None
+            print(f"Connection failed ({attempt}/{retries}), retrying...")
+            time.sleep(interval)
+
 #Wifi
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 print("connecting...")
-s.connect((SERVER_IP, PORT))
-print("Raspi Connected!!")
-s.send(b"Hello Raspi!\n")
+s = connect_socket(SERVER_IP, PORT)
+if s is None:
+    sys.exit(1)
 
 #Dualsense
 pygame.init()
 pygame.joystick.init()
-joy = pygame.joystick.Joystick(0)
-
-
 if pygame.joystick.get_count() == 0:
     print("Where is Dualsense!?")
     exit()
+
+joy = pygame.joystick.Joystick(0)
+joy.init()
 
 
 print("DualSense detected:", joy.get_name())

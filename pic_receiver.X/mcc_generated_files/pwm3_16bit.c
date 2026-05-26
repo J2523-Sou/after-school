@@ -74,8 +74,8 @@ void PWM3_16BIT_Initialize(void)
     //PWMPRL 255; 
     PWM3PRL = 0xFF;
 
-    //PWMPRH 249; 
-    PWM3PRH = 0xF9;
+    //PWMPRH 124; 
+    PWM3PRH = 0x7C;
 
     //PWMCPRE No prescale; 
     PWM3CPRE = 0x00;
@@ -92,17 +92,17 @@ void PWM3_16BIT_Initialize(void)
     //PWMPOL2 disabled; PWMPOL1 disabled; PWMPPEN disabled; PWMMODE Left aligned mode; 
     PWM3S1CFG = 0x00;
 
-    //PWMS1P1L 128; 
-    PWM3S1P1L = 0x80;
+    //PWMS1P1L 192; 
+    PWM3S1P1L = 0xC0;
 
-    //PWMS1P1H 247; 
-    PWM3S1P1H = 0xF7;
+    //PWMS1P1H 123; 
+    PWM3S1P1H = 0x7B;
 
-    //PWMS1P2L 128; 
-    PWM3S1P2L = 0x80;
+    //PWMS1P2L 192; 
+    PWM3S1P2L = 0xC0;
 
-    //PWMS1P2H 247; 
-    PWM3S1P2H = 0xF7;
+    //PWMS1P2H 123; 
+    PWM3S1P2H = 0x7B;
     
     //Clear PWM3_16BIT period interrupt flag
     PIR7bits.PWM3PIF = 0;

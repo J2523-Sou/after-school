@@ -7,16 +7,37 @@
 #include "mcc_generated_files/uart1.h" 
 
 #define RX_BUFFER_SIZE 9 
+#define PWM_DUTY_MAX 0x7CFFu
 
 volatile uint8_t rx_buffer[RX_BUFFER_SIZE];     //8ビットデータ配列（受信したやつ）
 volatile uint8_t rx_count = 0;                  //受信中のビット番号
 volatile bool rx_complete = false;              //受信完了フラグ
 
+static uint16_t scale_pwm_duty(uint8_t value)
+{
+    uint16_t duty = (((uint16_t)value) << 7) - (((uint16_t)value) << 1) - value;
+    return (duty > PWM_DUTY_MAX) ? PWM_DUTY_MAX : duty;
+}
 
 //メイン関数
 void main(void)
 {
     SYSTEM_Initialize(); 
+    
+    PWM1_16BIT_SetSlice1Output1DutyCycleRegister(0);
+    PWM1_16BIT_SetSlice1Output2DutyCycleRegister(0);
+    PWM2_16BIT_SetSlice1Output1DutyCycleRegister(0);
+    PWM2_16BIT_SetSlice1Output2DutyCycleRegister(0);
+    PWM3_16BIT_SetSlice1Output1DutyCycleRegister(0);
+    PWM3_16BIT_SetSlice1Output2DutyCycleRegister(0);
+    PWM4_16BIT_SetSlice1Output1DutyCycleRegister(0);
+    PWM4_16BIT_SetSlice1Output2DutyCycleRegister(0);
+    
+    PWM1_16BIT_LoadBufferRegisters();
+    PWM2_16BIT_LoadBufferRegisters();
+    PWM3_16BIT_LoadBufferRegisters();
+    PWM4_16BIT_LoadBufferRegisters();
+
     
     while (1)        
     {
@@ -57,14 +78,14 @@ void main(void)
             RA0 = 1;    //受信インジケータ
             
             //出力
-            PWM1_16BIT_SetSlice1Output1DutyCycleRegister((uint16_t)(rx_buffer[1]) << 2);
-            PWM1_16BIT_SetSlice1Output2DutyCycleRegister((uint16_t)(rx_buffer[2]) << 2);
-            PWM2_16BIT_SetSlice1Output1DutyCycleRegister((uint16_t)(rx_buffer[3]) << 2);
-            PWM2_16BIT_SetSlice1Output2DutyCycleRegister((uint16_t)(rx_buffer[4]) << 2);
-            PWM3_16BIT_SetSlice1Output1DutyCycleRegister((uint16_t)(rx_buffer[5]) << 2);
-            PWM3_16BIT_SetSlice1Output2DutyCycleRegister((uint16_t)(rx_buffer[6]) << 2);
-            PWM4_16BIT_SetSlice1Output1DutyCycleRegister((uint16_t)(rx_buffer[7]) << 2);
-            PWM4_16BIT_SetSlice1Output2DutyCycleRegister((uint16_t)(rx_buffer[8]) << 2);
+            PWM1_16BIT_SetSlice1Output1DutyCycleRegister(scale_pwm_duty(rx_buffer[1]));
+            PWM1_16BIT_SetSlice1Output2DutyCycleRegister(scale_pwm_duty(rx_buffer[2]));
+            PWM2_16BIT_SetSlice1Output1DutyCycleRegister(scale_pwm_duty(rx_buffer[3]));
+            PWM2_16BIT_SetSlice1Output2DutyCycleRegister(scale_pwm_duty(rx_buffer[4]));
+            PWM3_16BIT_SetSlice1Output1DutyCycleRegister(scale_pwm_duty(rx_buffer[5]));
+            PWM3_16BIT_SetSlice1Output2DutyCycleRegister(scale_pwm_duty(rx_buffer[6]));
+            PWM4_16BIT_SetSlice1Output1DutyCycleRegister(scale_pwm_duty(rx_buffer[7]));
+            PWM4_16BIT_SetSlice1Output2DutyCycleRegister(scale_pwm_duty(rx_buffer[8]));
             
             PWM1_16BIT_LoadBufferRegisters();
             PWM2_16BIT_LoadBufferRegisters();

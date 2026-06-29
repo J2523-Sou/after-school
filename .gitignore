@@ -1,2 +1,7 @@
 /pic_receiver.X/build/
 /pic_receiver.X/dist/
+.DS_Store
+__pycache__/
+*.pyc
+test.txt
+/pic_receiver.X/nbproject/private/

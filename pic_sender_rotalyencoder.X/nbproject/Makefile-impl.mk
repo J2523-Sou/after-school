@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=pic_receiver.X
+PROJECTNAME=pic_sender_rotalyencoder.X
 
 # Active Configuration
 DEFAULTCONF=default

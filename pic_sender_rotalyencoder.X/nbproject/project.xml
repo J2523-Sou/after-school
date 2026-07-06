@@ -3,8 +3,8 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>pic_receiver</name>
-            <creation-uuid>44401560-4ecc-433d-838f-dc13dfc8b80e</creation-uuid>
+            <name>pic_sender_rotalyencoder</name>
+            <creation-uuid>191ea19f-d502-48f2-80ee-9507d0ddfd6c</creation-uuid>
             <make-project-type>0</make-project-type>
             <sourceEncoding>UTF-8</sourceEncoding>
             <make-dep-projects/>

@@ -53,10 +53,6 @@ void SYSTEM_Initialize(void)
     PIN_MANAGER_Initialize();
     OSCILLATOR_Initialize();
     UART1_Initialize();
-    PWM2_16BIT_Initialize();
-    PWM3_16BIT_Initialize();
-    PWM4_16BIT_Initialize();
-    PWM1_16BIT_Initialize();
 }
 
 void OSCILLATOR_Initialize(void)
@@ -93,6 +89,43 @@ void PMD_Initialize(void)
     PMD7 = 0x00;
     // DMA5MD DMA5 enabled; DMA6MD DMA6 enabled; DMA8MD DMA8 enabled; DMA7MD DMA7 enabled; DMA1MD DMA1 enabled; DMA2MD DMA2 enabled; DMA3MD DMA3 enabled; DMA4MD DMA4 enabled; 
     PMD8 = 0x00;
+}
+
+void UART1_Initialize(void)
+{
+    U1CON1bits.ON = 0;
+
+    // 115200 bps at FOSC = 64 MHz, BRGS = 1: BRG = FOSC / (4 * baud) - 1.
+    U1BRG = 138;
+    U1CON0 = 0xB0; // BRGS enabled; TX/RX enabled; 8-bit asynchronous mode.
+    U1CON1 = 0x00;
+    U1CON2 = 0x00;
+    U1ERRIR = 0x00;
+    U1ERRIE = 0x00;
+    U1CON1bits.ON = 1;
+}
+
+bool UART1_IsTxReady(void)
+{
+    return (bool)!U1FIFObits.TXBF;
+}
+
+void UART1_Write(uint8_t txData)
+{
+    while (!UART1_IsTxReady())
+    {
+    }
+
+    U1TXB = txData;
+}
+
+void UART1_WriteString(const char *text)
+{
+    while (*text != '\0')
+    {
+        UART1_Write((uint8_t)*text);
+        text++;
+    }
 }
 
 

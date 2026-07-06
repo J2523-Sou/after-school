@@ -52,11 +52,6 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <conio.h>
-#include "uart1.h"
-#include "pwm2_16bit.h"
-#include "pwm4_16bit.h"
-#include "pwm3_16bit.h"
-#include "pwm1_16bit.h"
 
 
 
@@ -99,6 +94,10 @@ void OSCILLATOR_Initialize(void);
  */
 void PMD_Initialize(void);
 
+void UART1_Initialize(void);
+void UART1_Write(uint8_t txData);
+void UART1_WriteString(const char *text);
+bool UART1_IsTxReady(void);
 
 #endif	/* MCC_H */
 /**

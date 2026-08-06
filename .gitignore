@@ -4,3 +4,44 @@
 test.txt
 /pic_receiver.X/nbproject/private/
 /pic_receiver.X/mcc-manifest-autosave.yml
+
+# 共通のローカル環境・一時ファイル
+.vscode/
+.idea/
+.venv/
+.venv*/
+venv/
+env/
+__pycache__/
+*.py[cod]
+
+# ビルド生成物（マシン固有の絶対パスを含むため共有しない）
+**/Build/
+**/out/
+**/_build/
+**/cmake/**/.generated/
+**/*.dSYM/
+**/*.o
+**/*.obj
+**/*.elf
+**/*.hex
+**/*.hxl
+**/*.lst
+**/*.map
+**/*.sdb
+**/*.sym
+**/*.cmf
+**/*.mum
+**/*.p1
+**/*.p2
+
+# CMake / Ninja のローカル生成物
+**/CMakeCache.txt
+**/cmake_install.cmake
+**/compile_commands.json
+**/.ninja_log
+**/build.ninja
+**/rules.ninja
+**/Makefile-genesis.properties
+
+# *.mc3、nbproject/configurations.xml、Makefile、MCC生成ソースは保持する

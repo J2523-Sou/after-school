@@ -19,7 +19,7 @@ def stick(axis):
 DEAD = 0.05
 
 #Raspberry Pi IP
-SERVER_IP = os.environ.get("ROBOT_SERVER_IP", "172.21.6.99")  # MATSUE接続時
+SERVER_IP = os.environ.get("ROBOT_SERVER_IP", "172.21.6.20")  # MATSUE接続時
 
 PORT = int(os.environ.get("ROBOT_SERVER_PORT", "5001"))
 axis = [0, 0, 0, 0, 0, 0]
